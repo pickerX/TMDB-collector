@@ -177,6 +177,8 @@ dependencies {
     implementation deps.afodialog.core
     implementation deps.afodialog.bottomsheets
     implementation deps.afodialog.datetime
+    // image downloader
+    implementation deps.coil
     // bugly
     implementation deps.bugly.crashreport_upgrade
 

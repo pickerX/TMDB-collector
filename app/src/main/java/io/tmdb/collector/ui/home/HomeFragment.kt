@@ -1,5 +1,6 @@
 package io.tmdb.collector.ui.home
 
+import android.widget.Toast
 import androidx.fragment.app.viewModels
 import com.me.lib.base.BaseFragment
 import com.me.lib.ui.recycler.MuxAdapter
@@ -28,9 +29,13 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
         recyclerView.value.adapter = adapter.value
         adapter.value.addItem(viewPagerItem)
 
-        homeViewModel.upcomingMovies.observe(this) {
-            it.forEach {
-                Timber.d("upcoming >> ${it.title}")
+        homeViewModel.upcomingMovies.observe(this) { data ->
+            if (data.results.isEmpty()) {
+                Toast.makeText(requireContext(), "No upcoming movies", Toast.LENGTH_LONG).show()
+            } else {
+                data.results.forEach {
+                    Timber.d("upcoming >> ${it.title}")
+                }
             }
         }
     }

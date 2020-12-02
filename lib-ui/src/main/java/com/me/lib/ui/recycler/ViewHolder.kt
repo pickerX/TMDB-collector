@@ -12,6 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
  */
 open class ViewHolder<Binding : ViewDataBinding>(itemView: View) :
     RecyclerView.ViewHolder(itemView) {
-    val binding = DataBindingUtil.bind<Binding>(itemView)
+    val binding: Binding = DataBindingUtil.bind<Binding>(itemView)!!
 
 }

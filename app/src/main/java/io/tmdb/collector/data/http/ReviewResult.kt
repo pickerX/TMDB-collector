@@ -1,4 +1,4 @@
-package io.tmdb.collector.api.data
+package io.tmdb.collector.data.http
 
 import io.tmdb.collector.data.Review
 

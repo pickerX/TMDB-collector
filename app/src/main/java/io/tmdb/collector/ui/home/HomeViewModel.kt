@@ -2,11 +2,10 @@ package io.tmdb.collector.ui.home
 
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.liveData
 import com.me.lib.base.BaseVM
 import io.tmdb.collector.data.Movie
-import io.tmdb.collector.repo.MovieRepo
+import io.tmdb.collector.data.http.ResultData
 
 class HomeViewModel @ViewModelInject constructor(
     private val movieRepo: MovieRepo
@@ -17,6 +16,6 @@ class HomeViewModel @ViewModelInject constructor(
         emitSource(data)
     }
 
-    val upcomingMovies: LiveData<List<Movie>> = _upcoming
+    val upcomingMovies: LiveData<ResultData<Movie>> = _upcoming
 
 }

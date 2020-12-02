@@ -1,8 +1,8 @@
 package io.tmdb.collector.api
 
 import com.skydoves.sandwich.ApiResponse
-import io.tmdb.collector.api.data.ResultData
-import io.tmdb.collector.api.data.ReviewResult
+import io.tmdb.collector.data.http.ResultData
+import io.tmdb.collector.data.http.ReviewResult
 import io.tmdb.collector.data.Movie
 import retrofit2.Call
 import retrofit2.http.GET

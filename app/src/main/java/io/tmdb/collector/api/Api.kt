@@ -8,10 +8,13 @@ package io.tmdb.collector.api
 object Api {
 
     private const val BASE_API = "https://api.themoviedb.org"
-
+    /** 海报地址配置 */
     private const val BASE_POSTER_PATH = "https://image.tmdb.org/t/p/w342"
+    /** backdrop 地址配置 */
     private const val BASE_BACKDROP_PATH = "https://image.tmdb.org/t/p/w780"
+    /** Youtube 播放地址配置 */
     private const val YOUTUBE_VIDEO_URL = "https://www.youtube.com/watch?v="
+    /** Youtube 缩略图配置 */
     private const val YOUTUBE_THUMBNAIL_URL = "https://img.youtube.com/vi/"
 
     /** v3 version http server */

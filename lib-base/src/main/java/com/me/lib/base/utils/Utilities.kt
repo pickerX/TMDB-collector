@@ -90,7 +90,8 @@ inline fun EditText.onTextChangedProxy(
 
 fun <T : RoomDatabase> newRoom(
     appContext: Context,
-    clazz: Class<T>, databaseName: String,
+    clazz: Class<T>,
+    databaseName: String,
     onCreated: () -> Unit = {},
     vararg migration: Migration
 ): T {

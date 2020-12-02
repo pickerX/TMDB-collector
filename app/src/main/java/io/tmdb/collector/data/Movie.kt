@@ -3,21 +3,27 @@
  */
 package io.tmdb.collector.data
 
+import androidx.room.Entity
 import java.util.*
 
+@Entity(primaryKeys = [("id")])
 data class Movie(
-    val id: Long = 0,
+    val id: Int,
+    var page: Int,
+    var keywords: List<Keyword>? = ArrayList(),
+    var videos: List<Video>? = ArrayList(),
+    var reviews: List<Review>? = ArrayList(),
+    val poster_path: String?,
+    val adult: Boolean,
+    val overview: String,
+    val release_date: String?,
+    val genre_ids: List<Int>,
+    val original_title: String,
+    val original_language: String,
     val title: String,
-    var original_title: String? = null,
-    var original_language: String? = null,
-    var overview: String? = null,
-    var adult: Boolean = false,
-    var poster_path: String? = null,
-    var release_date: Date? = null,
-    var genre_ids: List<Int>? = null,
-    var backdrop_path: String? = null,
-    var popularity: Double = 0.0,
-    var vote_count: Int = 0,
-    var video: Boolean = false,
-    var vote_average: Double = 0.0,
+    val backdrop_path: String?,
+    val popularity: Float,
+    val vote_count: Int,
+    val video: Boolean,
+    val vote_average: Float
 )

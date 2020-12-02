@@ -1,9 +1,11 @@
 package io.tmdb.collector.ui.home.item
 
 import android.view.View
+import coil.load
 import com.me.lib.ui.recycler.DefaultItem
 import com.me.lib.ui.recycler.ViewHolder
 import io.tmdb.collector.R
+import io.tmdb.collector.api.Api
 import io.tmdb.collector.data.Movie
 import io.tmdb.collector.databinding.ItemMoviePosterBinding
 
@@ -18,6 +20,12 @@ class ViewPagerItem : DefaultItem<Movie>() {
 
     override fun onBindViewHolder(holder: ViewHolder<*>, position: Int) {
         val data = getItem(position)
+        val poster = holder as PosterVM
+        with(poster.binding) {
+            data.poster_path?.let { ivPoster.load(Api.getPosterPath(it)) }
+
+            tvTitle.text = data.original_title
+        }
 
     }
 

@@ -76,6 +76,6 @@ dependencies {
     api deps.glide.runtime
     kapt deps.glide.compiler
     // json
-    implementation deps.json.gson
-    implementation deps.json.fastjson
+    api deps.json.gson
+    api deps.json.fastjson
 }
