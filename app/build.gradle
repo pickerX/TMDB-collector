@@ -1,0 +1,193 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'kotlin-android-extensions'
+    id 'androidx.navigation.safeargs'
+    id 'dagger.hilt.android.plugin'
+
+}
+android {
+    compileSdkVersion buildVersions.compile_sdk
+    buildToolsVersion buildVersions.build_tools
+
+    defaultConfig {
+        applicationId buildVersions.applicationId
+        minSdkVersion buildVersions.min_sdk
+        targetSdkVersion buildVersions.target_sdk
+        versionCode buildVersions.version_code
+        versionName buildVersions.version_name
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+
+        ndk {
+            // ndk support
+            abiFilters 'armeabi', 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a', 'mips', 'mips64'
+        }
+
+        configurations {
+
+        }
+
+        manifestPlaceholders = [
+                                FILE_AUTHORITIES: "${gradle.fileAuthorities}"
+        ]
+
+        buildConfigField("String", "FILE_AUTHORITIES", "${withProperty(gradle.fileAuthorities)}")
+
+        flavorDimensions "Product"
+
+        multiDexEnabled true
+    }
+
+    signingConfigs {
+        release {
+            storeFile file("${gradle.storeFile}")
+            storePassword "${gradle.storePassword}"
+            keyAlias "${gradle.keyAlias}"
+            keyPassword "${gradle.keyPassword}"
+        }
+
+        debug {
+            storeFile file("${gradle.storeFile}")
+            storePassword "${gradle.storePassword}"
+            keyAlias "${gradle.keyAlias}"
+            keyPassword "${gradle.keyPassword}"
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.debug
+        }
+    }
+
+    productFlavors {
+        slim {
+            // 通用平台
+            dimension "Product"
+        }
+
+        play {
+            // Google play 市场
+            dimension "Product"
+        }
+    }
+
+    applicationVariants.all { variant ->
+        def appName = variant.flavorName
+        def versionName = variant.versionName
+
+        variant.outputs.each { out ->
+            // rename:slim-v1.29.0.apk
+            if (out.name.contains("release")) {
+                out.outputFileName = "${appName}-v${versionName}.apk"
+            }
+        }
+    }
+
+    aaptOptions {
+
+    }
+
+    buildFeatures {
+        dataBinding = true
+    }
+
+    lintOptions {
+        quiet true          // If set to true, turns off analysis progress reporting by lint.
+        ignoreWarnings true // if true, only report errors.
+    }
+
+    compileOptions {
+        sourceCompatibility = 1.8
+        targetCompatibility = 1.8
+    }
+
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation project(path: ':lib-base')
+    implementation project(path: ':lib-ui')
+    implementation project(path: ':lib-scache')
+
+    // kotlin
+    implementation deps.kotlin.stdlib
+
+    // android components
+    implementation deps.arch.app_compat
+    implementation deps.arch.recyclerview
+    implementation deps.arch.cardview
+    implementation deps.arch.material
+    implementation deps.arch.core_ktx
+    implementation deps.arch.viewpage2
+    implementation deps.arch.startup
+    // implementation deps.arch.runtime
+    // implementation deps.arch.transition
+    implementation deps.arch.constraint_layout
+
+    // lifecycle
+    implementation deps.lifecycle.viewmodel_ktx
+    implementation deps.lifecycle.livedata_ktx
+    implementation deps.lifecycle.extensions
+    implementation deps.lifecycle.runtime_ktx
+    implementation deps.lifecycle.java8
+    kapt deps.lifecycle.compiler
+
+    // navigation
+    implementation deps.navigation.fragment_ktx
+    implementation deps.navigation.runtime_ktx
+    implementation deps.navigation.ui_ktx
+
+    // room
+    implementation deps.room.runtime
+    implementation deps.room.ktx
+    kapt deps.room.compiler
+
+    // coroutines
+    implementation deps.coroutines.android
+    implementation deps.sandwich
+
+    // rxjava
+    // implementation deps.rxjava.android
+    // implementation deps.rxjava.java
+    // Hilt
+    implementation deps.hilt.viewmodel
+    kapt deps.hilt.compiler
+    // Dagger + Hilt
+    implementation deps.hilt.dagger_hilt
+    kapt deps.hilt.dagger_hilt_compile
+
+    // ui
+    implementation deps.timber
+    implementation deps.ui.circleimageview
+    implementation deps.afodialog.core
+    implementation deps.afodialog.bottomsheets
+    implementation deps.afodialog.datetime
+    // bugly
+    implementation deps.bugly.crashreport_upgrade
+
+    // test
+    testImplementation deps.junit
+}
+
+tasks.whenTaskAdded { task ->
+    if (task.name.equalsIgnoreCase("assembleRelease")) {
+        task.doLast {
+            copyToRootDir()
+        }
+    }
+}

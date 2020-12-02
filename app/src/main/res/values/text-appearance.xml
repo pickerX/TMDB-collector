@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Text">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="Text.Light" parent="Text">
+        <item name="android:textColor">@color/color_353442</item>
+    </style>
+
+    <style name="Text.Dark" parent="Text">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="Text.Light.Poster" parent="Text">
+        <item name="android:textColor">@color/color_353442</item>
+        <item name="android:textSize">32sp</item>
+    </style>
+
+    <style name="Text.Dark.Poster" parent="Text.Light.Poster">
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="Text.Light.Item" parent="Text.Light">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="Text.Dark.Item" parent="Text.Dark">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="Text.Light.Item.desc" parent="Text.Light">
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/color_9B9B9B</item>
+    </style>
+
+    <dimen name="sp_logo">38sp</dimen>
+</resources>

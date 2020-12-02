@@ -1,0 +1,5 @@
+include ':lib-ui'
+include ':lib-scache'
+include ':lib-base'
+include ':app'
+rootProject.name = "TMDB-collector"

@@ -1,0 +1,21 @@
+// 方法定义
+ext.copyToRootDir = this.&copyToRootDir
+
+/**
+ * copy apk到指定目录
+ */
+void copyToRootDir() {
+    android.applicationVariants.all { variant ->
+        if (variant.name.contains("Release")) {
+            // copy to project root apks folder when release version
+            def dir = "$rootDir/apks/${variant.flavorName}/release/"
+            File outputPath = new File(dir)
+            println(">>> APK build to:${outputPath.getAbsolutePath()}")
+            copy {
+                from variant.outputs[0].outputFile
+                into outputPath
+            }
+        }
+    }
+}
+
