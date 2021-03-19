@@ -5,7 +5,9 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
 import io.tmdb.collector.api.MovieApi
+import io.tmdb.collector.api.PersonApi
 import io.tmdb.collector.repo.MovieRepo
+import io.tmdb.collector.repo.PersonRepo
 import io.tmdb.collector.repo.UserRepo
 import javax.inject.Singleton
 
@@ -28,6 +30,11 @@ object RepositoryModule {
     @Provides
     fun movieRepo(api: MovieApi): MovieRepo {
         return MovieRepo(api)
+    }
+    @Singleton
+    @Provides
+    fun personRepo(api: PersonApi): PersonRepo {
+        return PersonRepo(api)
     }
 }
 //@Module

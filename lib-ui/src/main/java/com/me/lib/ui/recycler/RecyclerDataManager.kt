@@ -2,15 +2,14 @@ package com.me.lib.ui.recycler
 
 interface RecyclerDataManager<E> {
 
-    val data: MutableList<E>
+    val dataSet: MutableList<E>
 
-    fun setData(data: List<E>) {
-        this.data.clear()
-        this.data.addAll(data)
-        notifyDataSetChanged()
+    fun updateAll(data: List<E>) {
+        this.dataSet.clear()
+        this.dataSet.addAll(data)
     }
 
-    fun get(position: Int) = data[position]
+    fun get(position: Int) = dataSet[position]
 
     fun notifyDataSetChanged()
 }

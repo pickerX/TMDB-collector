@@ -61,9 +61,6 @@ dependencies {
     implementation deps.navigation.runtime_ktx
     implementation deps.navigation.ui_ktx
 
-    // room
-    implementation deps.room.runtime
-    kapt deps.room.compiler
     // work manager
     implementation deps.work.runtime_ktx
 
@@ -73,8 +70,8 @@ dependencies {
     implementation deps.retrofit.gson
 
     // glide
-    api deps.glide.runtime
-    kapt deps.glide.compiler
+     api deps.glide.runtime
+    // kapt deps.glide.compiler
     // json
     api deps.json.gson
     api deps.json.fastjson

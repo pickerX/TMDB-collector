@@ -1,14 +1,17 @@
 package io.tmdb.collector.ui.home
 
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.me.lib.base.BaseFragment
-import com.me.lib.ui.recycler.MuxAdapter
+import com.me.lib.base.utils.WindowExt
+import com.me.lib.ui.EricImageView
+import com.me.lib.ui.recycler.adapter.MuxAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import io.tmdb.collector.R
 import io.tmdb.collector.databinding.FragmentHomeBinding
-import io.tmdb.collector.ui.home.item.ViewPagerItem
-import timber.log.Timber
+import kotlinx.android.synthetic.main.fragment_home.view.*
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
@@ -16,27 +19,38 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     override fun layout(): Int = R.layout.fragment_home
 
     private val homeViewModel by viewModels<HomeViewModel>()
+    private val personViewModel by viewModels<PersonViewModel>()
 
-    private val recyclerView = lazy { binding.includeRecycler.recyclerView }
-
-    private val adapter = lazy { MuxAdapter() }
-
-    private val viewPagerItem = ViewPagerItem()
+    private lateinit var adapter: MuxAdapter
+    private lateinit var itemManager: RvItemManager
 
     override fun onViewsReady() {
-        setActionBar(binding.includeToolbar.toolBar)
+        setActionBar(binding.appBarLayout.tool_bar)
+        adapter = MuxAdapter()
+        itemManager = RvItemManager(adapter).also { it.load() }
 
-        recyclerView.value.adapter = adapter.value
-        adapter.value.addItem(viewPagerItem)
+        binding.recyclerView.also {
+            it.adapter = adapter
+            it.layoutManager = LinearLayoutManager(requireContext())
+        }
 
-        homeViewModel.upcomingMovies.observe(this) { data ->
+        homeViewModel.popularMovies.observe(this) { data ->
             if (data.results.isEmpty()) {
                 Toast.makeText(requireContext(), "No upcoming movies", Toast.LENGTH_LONG).show()
             } else {
-                data.results.forEach {
-                    Timber.d("upcoming >> ${it.title}")
-                }
+                itemManager.bindPopularMovies(data.results)
             }
         }
+
+        personViewModel.popularPerson.observe(this) { data ->
+            itemManager.bindPopularPerson(data.results)
+        }
+
+        homeViewModel.upcomingMovies.observe(this) { data ->
+            itemManager.bindUpcomingMovies(data.results)
+            itemManager.bindTopRatedMovies(data.results)
+        }
     }
+
+
 }

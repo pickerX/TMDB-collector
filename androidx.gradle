@@ -1,0 +1,448 @@
+ext {
+    activity_version = '1.2.0'
+    appcompat_version = '1.2.0'
+    // CameraX core library using the camera2 implementation
+    camerax_version = "1.0.0-rc02"
+    compose_version = "1.0.0-alpha12"
+    fragment_version = "1.2.5"
+    hilt_version = "2.28-alpha"
+    lifecycle_version = "2.3.0"
+    arch_version = "2.1.0"
+    nav_version = "2.3.3"
+    paging_version = "2.1.2"
+    room_version = "2.2.6"
+    work_version = "2.5.0"
+    preference_version = "1.1.1"
+    core_version = "1.3.2"
+    media2_version = "1.1.2"
+    collection_version = "1.1.0"
+}
+deps = [
+        // 	core.animation 软件包支持多种常用的动画函数。
+        core               : [
+                // Java language implementation
+                core          : "androidx.core:core:$core_version",
+                // Kotlin
+                core_ktx      : "androidx.core:core-ktx:$core_version",
+                // To use RoleManagerCompat
+                core_role     : "androidx.core:core-role:1.0.0",
+                // To use the Animator APIs
+                core_animation: "androidx.core:core-animation:1.0.0-alpha02",
+                // To test the Animator APIs
+                core_test     : "androidx.core:core-animation-testing:1.0.0-alpha02"
+        ],
+        // 访问基于 Activity 构建的可组合 API。
+        activity           : [
+                activity    : "androidx.activity:activity:$activity_version",
+                activity_ktx: "androidx.activity:activity-ktx:$activity_version"
+        ],
+        // 允许在平台旧版 API 上访问新 API（很多使用 Material Design）。
+        appcompat          : [
+                appcompat         : "androidx.appcompat:appcompat:$appcompat_version",
+                // For loading and tinting drawables on older versions of the platform
+                appcompat_resource: "androidx.appcompat:appcompat-resources:$appcompat_version"
+        ],
+        //  *	构建移动相机应用。
+        camera             : [
+                // The following line is optional, as the core library is included indirectly by camera-camera2
+                camera_core      : "androidx.camera:camera-core:${camerax_version}",
+                camera_camera2   : "androidx.camera:camera-camera2:${camerax_version}",
+                // If you want to additionally use the CameraX Lifecycle library
+                camera_lifecycle : "androidx.camera:camera-lifecycle:${camerax_version}",
+                // If you want to additionally use the CameraX View class
+                camera_view      : "androidx.camera:camera-view:1.0.0-alpha21",
+                // If you want to additionally use the CameraX Extensions library
+                camera_extensions: "androidx.camera:camera-extensions:1.0.0-alpha21",
+        ],
+        //  *	使用描述界面形状和数据依赖项的可组合函数，以编程方式定义界面。
+        compose            : [
+                compose_ui         : "androidx.compose.ui:ui:1.0.0-alpha11",
+                compose_rt         : "androidx.compose.runtime:runtime:$compose_version",
+                compose_rt_livedata: "androidx.compose.runtime:runtime-livedata:$compose_version",
+                compose_rt_rxjava  : "androidx.compose.runtime:runtime-rxjava2:$compose_version",
+                compose_material   : "androidx.compose.material:material:$compose_version",
+                compose_foundation : "androidx.compose.foundation:foundation:1.0.0-alpha11",
+                compose_compiler   : "androidx.compose.compiler:compiler:$compose_version",
+                compose_animation  : "androidx.compose.animation:animation:$compose_version",
+
+        ],
+        //  *	使用声明性格式将布局中的界面组件绑定到应用中的数据源。
+        // databinding                         : [],
+        //  *	将您的应用细分为在一个 Activity 中托管的多个独立屏幕。
+        fragment           : [
+                // Java language implementation
+                fragment     : "androidx.fragment:fragment:$fragment_version",
+                // Kotlin
+                fragment_ktx : "androidx.fragment:fragment-ktx:$fragment_version",
+                // Testing Fragments in Isolation
+                fragment_test: "androidx.fragment:fragment-testing:$fragment_version"
+        ],
+        //  *	扩展了 Dagger Hilt 的功能，以实现 androidx 库中某些类的依赖项注入。
+        hilt               : [
+                classpath: 'com.google.dagger:hilt-android-gradle-plugin:$hilt_version',
+                hilt     : "com.google.dagger:hilt-android:$hilt_version",
+                kapt     : "com.google.dagger:hilt-android-compiler:$hilt_version"
+        ],
+        //  *	构建生命周期感知型组件，这些组件可以根据 Activity 或 Fragment 的当前生命周期状态调整行为。
+        lifecycle          : [
+                // ViewModel
+                lifecycle_viewmodel      : "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version",
+                // LiveData
+                lifecycle_livedata       : "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version",
+                // Lifecycles only (without ViewModel or LiveData)
+                lifecycle_runtime        : "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_version",
+                // Saved state module for ViewModel
+                lifecycle_vm_savedstate  : "androidx.lifecycle:lifecycle-viewmodel-savedstate:$lifecycle_version",
+                // Jetpack Compose Integration for ViewModel
+                lifecycle_vm_compose     : "androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha01",
+                // Annotation processor
+                lifecycle_kapt           : "androidx.lifecycle:lifecycle-compiler:$lifecycle_version",
+                // alternately - if using Java8, use the following instead of lifecycle-compiler
+                lifecycle_common         : "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version",
+                // optional - helpers for implementing LifecycleOwner in a Service
+                lifecycle_service        : "androidx.lifecycle:lifecycle-service:$lifecycle_version",
+                // optional - ProcessLifecycleOwner provides a lifecycle for the whole application process
+                lifecycle_process        : "androidx.lifecycle:lifecycle-process:$lifecycle_version",
+                // optional - ReactiveStreams support for LiveData
+                lifecycle_reactivestreams: "androidx.lifecycle:lifecycle-reactivestreams-ktx:$lifecycle_version",
+                // optional - Test helpers for LiveData
+                lifecycle_test           : "androidx.arch.core:core-testing:$arch_version"
+        ],
+        //  Design 组件*	适用于 Android 的模块化、可自定义 Material Design 界面组件。
+        Material           : [],
+        //  *	构建和组织应用内界面，处理深层链接以及在屏幕之间导航。
+        navigation         : [
+                // Java language implementation
+                navigation_fragment    : "androidx.navigation:navigation-fragment:$nav_version",
+                navigation_ui          : "androidx.navigation:navigation-ui:$nav_version",
+                // Kotlin
+                navigation_fragment_ktx: "androidx.navigation:navigation-fragment-ktx:$nav_version",
+                navigation_ui_ktx      : "androidx.navigation:navigation-ui-ktx:$nav_version",
+                // Feature module Support
+                navigation_features    : "androidx.navigation:navigation-dynamic-features-fragment:$nav_version",
+                // Testing Navigation
+                navigation_test        : "androidx.navigation:navigation-testing:$nav_version",
+                // Jetpack Compose Integration
+                navigation_compose     : "androidx.navigation:navigation-compose:1.0.0-alpha07",
+        ],
+        //  *	在页面中加载数据，并在 RecyclerView 中呈现。
+        paging             : [
+                paging_runtime: "androidx.paging:paging-runtime:$paging_version",
+                // alternatively - without Android dependencies for tests
+                paging_test   : "androidx.paging:paging-common:$paging_version",
+                // optional - RxJava2 support
+                paging_rxjava2: "androidx.paging:paging-rxjava2:$paging_version",
+                // optional - RxJava3 support
+                paging_rxjava3: "androidx.paging:paging-rxjava3:$paging_version",
+                // optional - Guava ListenableFuture support
+                paging_guava  : "androidx.paging:paging-guava:$paging_version",
+                // Jetpack Compose Integration
+                paging_compose: "androidx.paging:paging-compose:1.0.0-alpha06",
+        ],
+        //  *	创建、存储和管理由 SQLite 数据库支持的持久性数据。
+        room               : [
+                room_runtime: "androidx.room:room-runtime:$room_version",
+                room_kapt   : "androidx.room:room-compiler:$room_version",
+                // optional - Kotlin Extensions and Coroutines support for Room
+                room_ktx    : "androidx.room:room-ktx:$room_version",
+                // optional - Test helpers
+                room_test   : "androidx.room:room-testing:$room_version"
+        ],
+        //  *	在 Android 中进行测试。
+        test               : [],
+        //  *	调度和执行可延期且基于约束条件的后台任务。
+        work               : [
+                // (Java only)
+                work_runtime     : "androidx.work:work-runtime:$work_version",
+                // Kotlin + coroutines
+                work_runtime_ktx : "androidx.work:work-runtime-ktx:$work_version",
+                // optional - RxJava2 support
+                work_rxjava2     : "androidx.work:work-rxjava2:$work_version",
+                // optional - GCMNetworkManager support
+                work_gcm         : "androidx.work:work-gcm:$work_version",
+                // optional - Test helpers
+                work_test        : "androidx.work:work-testing:$work_version",
+                // optional - Multiprocess support
+                work_multiprocess: "androidx.work:work-multiprocess:$work_version",
+        ],
+        // 	打造适用于 Wear OS by Google 谷歌智能手表的应用。
+        wear               : [
+                wear_                  : "androidx.wear:wear:1.1.0",
+                // Add support for wearable specific inputs
+                wear_input             : "androidx.wear:wear-input:1.0.0",
+                wear_test              : "androidx.wear:wear-input-testing:1.0.0",
+                // Use to implement wear watchface complications
+                wear_provider          : "androidx.wear:wear-complications-provider:1.0.0-alpha07",
+                // Use to implement wear watchfaces
+                wear_watchface         : "androidx.wear:wear-watchface:1.0.0-alpha07",
+                // Use to implement a watchface style and complication editor
+                wear_watchface_editor  : "androidx.wear:wear-watchface-editor:1.0.0-alpha07",
+                // Use to implement wear ongoing activities
+                wear_ongoing           : "androidx.wear:wear-ongoing:1.0.0-alpha02",
+                // Use to implement support for interactions from the Wearables to Phones
+                wear_phone_interactions: "androidx.wear:wear-phone-interations:1.0.0-alpha02",
+                // Use to implement support for interactions between the Wearables and Phones
+                // wear_phone_interactions: "androidx.wear:wear-phone-interations:1.0.0-alpha01",
+        ],
+        // 	帮助支持不同的设备类型，例如可折叠设备。
+        window             : [
+                window: "androidx.window:window:1.0.0-alpha02"
+        ],
+        // 以异步,一致的事务方式存储数据, 克服了 SharedPreferences 的一些缺点
+        datastore          : [
+                // Preferences DataStore (SharedPreferences like APIs)
+                datastore_preferences: "androidx.datastore:datastore-preferences:1.0.0-alpha06",
+                // Typed DataStore (Typed API surface, such as Proto)
+                datastore            : "androidx.datastore:datastore:1.0.0-alpha06"
+
+        ],
+        // 在页面中加载数据，并在 RecyclerView 中呈现。
+        preference         : [
+                // Java language implementation
+                preference    : "androidx.preference:preference:$preference_version",
+                // Kotlin
+                preference_ktx: "androidx.preference:preference-ktx:$preference_version"
+        ],
+
+        // 	使用基于物理特性的动画 API 制作流畅的动画。
+        dynamicanimation   : [
+                // Java language implementation
+                dynamic    : "androidx.dynamicanimation:dynamicanimation:1.0.0",
+                // Kotlin
+                dynamic_ktx: "androidx.dynamicanimation:dynamicanimation-ktx:1.0.0-alpha03",
+        ],
+        // 	在旧版平台上使用动画插值器。
+        interpolator       : [
+                interpolator: "androidx.interpolator:interpolator:1.0.0"
+        ],
+        // 	从图片中提取具有代表性的调色板。
+        palette            : [],
+        // 	使用开始和结束布局为界面中的动作添加动画效果。
+        transition         : [],
+        // 	渲染矢量图形。
+        vectordrawable     : [
+                vd         : "androidx.vectordrawable:vectordrawable:1.1.0",
+                /* To be able to animate properties of a VectorDrawable, add the following.  Useful for
+                 * illustration purposes or state changes in response to user events
+                 */
+                vd_animated: "androidx.vectordrawable:vectordrawable-animated:1.1.0",
+                vd_seekable: "androidx.vectordrawable:vectordrawable-seekable:1.0.0-alpha02"
+        ],
+        // 	加载配置更改后继续存在的界面数据。
+        loader             : [
+                loader: "androidx.loader:loader:1.1.0"
+        ],
+        // 	读取和写入图片文件 EXIF 标记。
+        exifinterface      : [
+                exifinterface: "androidx.exifinterface:exifinterface:1.3.2"
+
+        ],
+        // 	使用 Android 设备上可用的编解码器，以 HEIF 格式对图像或图像集进行编码。
+        heifwriter         : [
+                heifwriter: "androidx.heifwriter:heifwriter:1.0.0"
+        ],
+        // 	与其他应用共享媒体内容和控件。
+        media2             : [
+                // Interacting with MediaSessions
+                media_session: "androidx.media2:media2-session:$media2_version",
+                // optional - UI widgets for VideoView and MediaControlView
+                media_widget : "androidx.media2:media2-widget:$media2_version",
+                // optional - Implementation of a SessionPlayer
+                media_player : "androidx.media2:media2-player:$media2_version",
+        ],
+        // 	利用通用界面实现在远程接收端设备上显示和播放媒体内容。
+        mediarouter        : [
+                mediarouter: "androidx.mediarouter:mediarouter:1.2.2"
+        ],
+        // 	实现 Material Design 抽屉式导航栏微件。
+        drawerlayout       : [
+                drawerlayout: "androidx.drawerlayout:drawerlayout:1.1.1"
+        ],
+        // 	使用开始和结束布局为界面中的动作添加动画效果。
+        transition         : [
+                // Java language implementation
+                transition    : "androidx.transition:transition:1.3.1",
+                // Kotlin
+                transition_ktx: "androidx.transition:transition-ktx:1.4.0"
+        ],
+        // 	通过生物识别特征或设备凭据进行身份验证，以及执行加密操作。
+        biometric          : [
+                // Java language implementation
+                biometric    : "androidx.biometric:biometric:1.1.0",
+                // Kotlin
+                biometric_ktx: "androidx.biometric:biometric-ktx:1.2.0-alpha02"
+        ],
+        // 	安全地管理密钥并对文件和 sharedpreferences 进行加密。
+        security           : [
+                security_crypto: "androidx.security:security-crypto:1.0.0-rc04",
+                // For Identity Credential APIs
+                security_id    : "androidx.security:security-identity-credential:1.0.0-alpha01"
+        ],
+        // 	在 Android Studio 中准确评估代码的性能。
+        benchmark          : [
+                junit4                : "androidx.benchmark:benchmark-junit4:1.0.0",
+                androidBenchmarkRunner: "androidx.benchmark.junit4.AndroidBenchmarkRunner"
+        ],
+        // 	实现一种在应用启动时初始化组件的简单、高效方法。
+        startup            : [
+                startup: "androidx.startup:startup-runtime:1.0.0"
+        ],
+        // 	将跟踪事件写入系统跟踪缓冲区。
+        tracing            : [
+                tracing: "androidx.tracing:tracing:1.0.0"
+        ],
+        // 	用圆角和阴影实现 Material Design 卡片图案。
+        cardview           : [
+                cardview: "androidx.cardview:cardview:1.0.0"
+        ],
+        // 	使用相对定位灵活地确定微件的位置和大小。
+        constraintlayout   : [
+                constraintlayout: "androidx.constraintlayout:constraintlayout:2.0.4"
+        ],
+        // 	定位顶层应用微件，例如 AppBarLayout 和 FloatingActionButton。
+        coordinatorlayout  : [
+                coordinatorlayout: "androidx.coordinatorlayout:coordinatorlayout:1.1.0"
+        ],
+        // 	实现自定义视图。
+        customview         : [
+                customview: "androidx.customview:customview:1.1.0"
+        ],
+        // 	在当前设备和旧版本设备上显示表情符号。
+        emoji              : [
+                emoji          : "androidx.emoji:emoji:1.2.0-alpha03",
+                emoji_appcompat: "androidx.emoji:emoji-appcompat:1.2.0-alpha03",
+                emoji_bundled  : "androidx.emoji:emoji-bundled:1.2.0-alpha03",
+        ],
+        // 	实现网格布局。
+        gridlayout         : [
+                gridlayout: "androidx.gridlayout:gridlayout:1.0.0"
+        ],
+        //  Design 组件*	适用于 Android 的模块化、可自定义 Material Design 界面组件。
+        Material           : [],
+        // 	在您的界面中显示大量数据，同时最大限度减少内存用量。
+        recyclerview       : [
+                recyclerview          : "androidx.recyclerview:recyclerview:1.1.0",
+                // For control over item selection of both touch and mouse driven selection
+                recyclerview_selection: "androidx.recyclerview:recyclerview-selection:1.1.0"
+        ],
+        // 	实现滑动窗格界面模式。
+        slidingpanelayout  : [
+                slidingpanelayout: "androidx.slidingpanelayout:slidingpanelayout:1.1.0"
+        ],
+        // 	实现下拉刷新的界面模式。
+        swiperefreshlayout : [
+                swiperefreshlayout: "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
+        ],
+        // 	以可滑动的格式显示视图或 Fragment。
+        viewpager2         : [
+                viewpager2: "androidx.viewpager2:viewpager2:1.0.0"
+        ],
+        // 	在 Android 5 及更高版本上使用新式 WebView API。
+        webkit             : [
+                webkit: "androidx.webkit:webkit:1.4.0"
+        ],
+        // 	获取广告 ID（无论是否通过 Play 服务）。
+        ads                : [
+                ads_id: 'androidx.ads:ads-identifier:1.0.0-alpha04',
+        ],
+        // 	公开元数据，帮助工具开发者和其他开发者了解您的应用代码。
+        annotation         : [
+                annotation             : "androidx.annotation:annotation:1.1.0",
+                // To use the Java-compatible @Experimental API annotation
+                annotation_experimental: "androidx.annotation:annotation-experimental:1.0.0"
+        ],
+        // .core	其他架构依赖项的帮助程序，包括可与 LiveData 配合使用的 JUnit 测试规则。
+        arch               : [
+                core_common : "androidx.arch.core:core-common:2.1.0",
+                core_runtime: "androidx.arch.core:core-runtime:2.1.0",
+                core_test   : "androidx.arch.core:core-testing:2.1.0",
+        ],
+        // 	异步膨胀布局以避免界面出现卡顿。
+        asynclayoutinflater: [
+                asynclayoutinflater: "androidx.asynclayoutinflater:asynclayoutinflater:1.0.0"
+        ],
+        // 	扩展提示，从而提高自动填充的准确性。
+        autofill           : [
+                autofill: "androidx.autofill:autofill:1.1.0"
+        ],
+        // 	在用户的默认浏览器中显示网页。
+        browser            : [
+                browser: "androidx.browser:browser:1.3.0"
+        ],
+        // 	降低现有和新的小型集合对内存的影响。
+        collection         : [
+                // Java language implementation
+                collection    : "androidx.collection:collection:$collection_version",
+                // Kotlin
+                collection_ktx: "androidx.collection:collection-ktx:$collection_version"
+        ],
+        // 	使用协程将任务移出主线程，并充分利用 ListenableFuture。
+        concurrent         : [
+                concurrent    : "androidx.concurrent:concurrent-futures:1.1.0",
+                // Kotlin
+                concurrent_ktx: "androidx.concurrent:concurrent-futures-ktx:1.1.0"
+        ],
+        // 	在后台线程中加载 ContentProvider 数据并进行分页。
+        contentpager       : [
+                contentpager: "androidx.contentpager:contentpager:1.0.0"
+        ],
+        // 	查看文件文档。
+        documentfile       : [
+                documentfile: "androidx.documentfile:documentfile:1.0.1"
+        ],
+        // 	创建企业专用应用。
+        enterprise         : [
+                enterprise     : "androidx.enterprise:enterprise-feedback:1.1.0",
+                // For testing enterprise feedback in isolation
+                enterprise_test: "androidx.enterprise:enterprise-feedback-testing:1.1.0"
+        ],
+        // 	在您的应用中以原生方式使用 Android 游戏 SDK 来执行复杂的游戏任务，例如帧同步。
+        games              : [
+                // To use the Android Frame Pacing library
+                games            : "androidx.games:games-frame-pacing:1.7.0-beta01",
+                // To use the Android Performance Tuner
+                games_performance: "androidx.games:games-performance-tuner:1.1.0-beta01"
+        ],
+        // 	一款独立工具，可将某个库中对已弃用支持库的依赖项迁移到等效的 AndroidX 依赖项。
+        jetifier           : [],
+        // 	使用适合 dpad 的微件和模板 Fragment 为 Android TV 设备编写应用。
+        leanback           : [
+                leanback           : "androidx.leanback:leanback:$leanback_version",
+                // leanback-preference is an add-on that provides a settings UI for TV apps.
+                leanback_preference: "androidx.leanback:leanback-preference:$leanback_version",
+                // leanback-paging is an add-on that simplifies adding paging support to a RecyclerView Adapter.
+                leanback_paging    : "androidx.leanback:leanback-paging:1.1.0-alpha07",
+                // leanback-tab is an add-on that provides customized TabLayout to be used as the top navigation bar.
+                leanback_tab       : "androidx.leanback:leanback-tab:1.1.0-beta01",
+        ],
+        // 	通过您的应用打印照片、文档、其他图形及图片。
+        print              : [
+                print: "androidx.print:print:1.0.0"
+        ],
+        // 	将内容推送到 Android TV 启动器的主屏幕。
+        recommendation     : [
+                recommendation: "androidx.recommendation:recommendation:1.0.0"
+        ],
+        // 	在您的界面中显示大量数据，同时最大限度减少内存用量。
+        remotecallback     : [],
+        // 	编写可插入组件，这些组件会在进程终止时保存界面状态，并在进程重启时恢复界面状态。
+        savedstate         : [
+                savedstate    : "androidx.savedstate:savedstate:1.1.0",
+                savedstate_ktx: "androidx.savedstate:savedstate-ktx:1.1.0"
+        ],
+        // 	提供向后兼容性，可以将快捷方式用作直接共享目标。
+        sharetarget        : [
+                sharetarget: "androidx.sharetarget:sharetarget:1.1.0"
+        ],
+        // 	识别文本中的对话、链接、选定内容和其他类似构造内容。
+        textclassifier     : [
+                textclassifier: "androidx.textclassifier:textclassifier:1.0.0-alpha03"
+        ],
+        // 	提供稳定且紧凑的二进制序列化格式，该格式可跨进程传递或安全保留。
+        versionedparcelable: [
+                versionedparcelable: "androidx.versionedparcelable:versionedparcelable:1.1.1"
+        ],
+]
+
+ext {
+}

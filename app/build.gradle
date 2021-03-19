@@ -36,50 +36,53 @@ android {
 
         buildConfigField("String", "FILE_AUTHORITIES", "${withProperty(gradle.fileAuthorities)}")
 
-        flavorDimensions "Product"
+        flavorDimensions "company", "channel"
 
         multiDexEnabled true
     }
 
     signingConfigs {
-        release {
-            storeFile file("${gradle.storeFile}")
-            storePassword "${gradle.storePassword}"
-            keyAlias "${gradle.keyAlias}"
-            keyPassword "${gradle.keyPassword}"
-        }
-
-        debug {
-            storeFile file("${gradle.storeFile}")
-            storePassword "${gradle.storePassword}"
-            keyAlias "${gradle.keyAlias}"
-            keyPassword "${gradle.keyPassword}"
-        }
+//        release {
+//            storeFile file("${gradle.storeFile}")
+//            storePassword "${gradle.storePassword}"
+//            keyAlias "${gradle.keyAlias}"
+//            keyPassword "${gradle.keyPassword}"
+//        }
+//
+//        debug {
+//            storeFile file("${gradle.storeFile}")
+//            storePassword "${gradle.storePassword}"
+//            keyAlias "${gradle.keyAlias}"
+//            keyPassword "${gradle.keyPassword}"
+//        }
     }
 
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
+            //signingConfig signingConfigs.release
         }
 
         debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.debug
+            //signingConfig signingConfigs.debug
         }
     }
 
     productFlavors {
-        slim {
-            // 通用平台
-            dimension "Product"
+        companyA {
+            dimension "company"
         }
-
-        play {
-            // Google play 市场
-            dimension "Product"
+        companyB {
+            dimension "company"
+        }
+        channelA {
+            dimension "channel"
+        }
+        channelB {
+            dimension "channel"
         }
     }
 
@@ -173,12 +176,12 @@ dependencies {
 
     // ui
     implementation deps.timber
-    implementation deps.ui.circleimageview
     implementation deps.afodialog.core
     implementation deps.afodialog.bottomsheets
     implementation deps.afodialog.datetime
     // image downloader
-    implementation deps.coil
+     implementation deps.coil
+//    implementation deps.glide.runtime
     // bugly
     implementation deps.bugly.crashreport_upgrade
 

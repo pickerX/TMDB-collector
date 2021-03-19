@@ -1,8 +1,10 @@
-package com.me.lib.ui.recycler
+package com.me.lib.ui.recycler.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.me.lib.ui.recycler.ItemViewCreator
+import com.me.lib.ui.recycler.ViewHolder
 
 class MuxAdapter : RecyclerView.Adapter<ViewHolder<*>>() {
 
@@ -16,7 +18,6 @@ class MuxAdapter : RecyclerView.Adapter<ViewHolder<*>>() {
         return viewsArray[position].getItemViewType()
     }
 
-    @Suppress("UNCHECKED_CAST")
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder<*> {
         val holder = getItemViewCreator(viewType)
         val itemView = LayoutInflater.from(parent.context).inflate(holder.layout(), parent, false)

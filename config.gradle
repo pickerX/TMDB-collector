@@ -14,8 +14,8 @@ ext.buildVersions = build
 
 ext {
     versions = [
-            activity             : '1.1.0',
-            android_gradle_plugin: '4.1.1',
+            activity             : '1.2.0',
+            android_gradle_plugin: '4.1.2',
             annotations          : "1.0.0",
             assisted_inject      : "0.6.0",
             apache_commons       : "2.5",
@@ -200,7 +200,7 @@ ext {
                     "okhttp": "com.squareup.okhttp3:okhttp:${versions.okhttp3}",
             ],
             json               : [
-                    fastjson: "com.alibaba:fastjson:1.1.51.android",
+                    fastjson: "com.alibaba:fastjson:1.1.72.android",
                     gson    : "com.google.code.gson:gson:2.8.2",
             ],
             rxjava             : [
@@ -208,7 +208,6 @@ ext {
                     java   : "io.reactivex.rxjava2:rxjava:$versions.rxjava2",
             ],
             ui                 : [
-                    circleimageview : 'de.hdodenhof:circleimageview:3.1.0',
                     bottomnavigation: 'com.ashokvarma.android:bottom-navigation-bar:2.2.0',
             ],
             afodialog          : [
@@ -284,9 +283,9 @@ def initConfig() {
     gradle.ext.fileAuthorities = properties.getProperty("fileAuthorities")
 
     println(">>> ${gradle.ext.storeFile}")
-    println(">>> ${gradle.ext.storePassword}")
-    println(">>> ${gradle.ext.keyAlias}")
-    println(">>> ${gradle.ext.keyPassword}")
+//    println(">>> ${gradle.ext.storePassword}")
+//    println(">>> ${gradle.ext.keyAlias}")
+//    println(">>> ${gradle.ext.keyPassword}")
 }
 
 ext.initConfig = this.&initConfig

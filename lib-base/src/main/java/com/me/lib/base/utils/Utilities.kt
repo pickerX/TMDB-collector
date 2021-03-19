@@ -16,13 +16,10 @@ import android.view.WindowManager
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import androidx.room.Room
-import androidx.room.RoomDatabase
-import androidx.room.migration.Migration
-import androidx.sqlite.db.SupportSQLiteDatabase
 import java.io.BufferedReader
 import java.io.FileReader
 import java.io.IOException
+import java.io.InputStream
 
 val ATLEAST_M = Build.VERSION.SDK_INT >= Build.VERSION_CODES.M
 val ATLEAST_N = Build.VERSION.SDK_INT >= Build.VERSION_CODES.N
@@ -88,23 +85,6 @@ inline fun EditText.onTextChangedProxy(
     addTextChangedListener(textWatcher)
 }
 
-fun <T : RoomDatabase> newRoom(
-    appContext: Context,
-    clazz: Class<T>,
-    databaseName: String,
-    onCreated: () -> Unit = {},
-    vararg migration: Migration
-): T {
-    return Room.databaseBuilder(appContext, clazz, databaseName)
-        .addCallback(object : RoomDatabase.Callback() {
-            override fun onCreate(db: SupportSQLiteDatabase) {
-                onCreated.invoke()
-            }
-        })
-        .addMigrations(*migration)
-        .build()
-}
-
 /**
  * request full screen before set content view
  */
@@ -164,6 +144,22 @@ fun getProcessName(pid: Int): String? {
         } catch (exception: IOException) {
             exception.printStackTrace()
         }
+    }
+    return null
+}
+
+fun readFromAsset(context: Context, fileName: String): String? {
+    var ins: InputStream? = null
+    try {
+        ins = context.assets.open(fileName)
+        val size = ins.available()
+        val buffer = ByteArray(size)
+        ins.read(buffer)
+        return String(buffer)
+    } catch (e: IOException) {
+        e.printStackTrace()
+    } finally {
+        ins?.close()
     }
     return null
 }

@@ -2,7 +2,7 @@ package com.pickerx.scache.internal
 
 import com.pickerx.scache.ContainerHelpers
 
-internal class SSRArray(var initialCapacity: Int) : Cloneable {
+internal class SSRArray(var initialCapacity: Int = 10) : Cloneable {
 
     private val DELETED = Any()
     private var mGarbage = false
@@ -10,11 +10,6 @@ internal class SSRArray(var initialCapacity: Int) : Cloneable {
     private var mKeys: IntArray
     private var mValues: Array<Any?>
     private var mSize = 0
-
-    /**
-     * Creates a new SparseArray containing no mappings.
-     */
-    constructor() : this(10)
 
     /**
      * Creates a new SparseArray containing no mappings that will not

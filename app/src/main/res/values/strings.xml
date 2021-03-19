@@ -1,6 +1,13 @@
 <resources>
-    <string name="app_name">TMDB-collector</string>
+    <string name="app_name">TMDB</string>
     <string name="title_home">Home</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+
+    <string name="category">Category</string>
+    <string name="schedule">Schedule</string>
+    <string name="rank">Rank</string>
+    <string name="my_collect">My Collection</string>
+
+    <string name="trending">Trending</string>
 </resources>

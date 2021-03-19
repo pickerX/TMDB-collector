@@ -1,13 +1,13 @@
 package io.tmdb.collector.di
 
 import android.content.Context
-import com.me.lib.base.utils.newRoom
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
 import io.tmdb.collector.room.AppDatabase
+import io.tmdb.collector.room.newRoom
 import timber.log.Timber
 import javax.inject.Singleton
 
@@ -18,7 +18,7 @@ import javax.inject.Singleton
  */
 @Module
 @InstallIn(ApplicationComponent::class)
-class DatabaseModule {
+object DatabaseModule {
 
     @Provides
     @Singleton

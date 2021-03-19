@@ -4,26 +4,34 @@
 package io.tmdb.collector.data
 
 import androidx.room.Entity
-import java.util.*
+import com.alibaba.fastjson.annotation.JSONCreator
 
 @Entity(primaryKeys = [("id")])
 data class Movie(
-    val id: Int,
-    var page: Int,
-    var keywords: List<Keyword>? = ArrayList(),
-    var videos: List<Video>? = ArrayList(),
-    var reviews: List<Review>? = ArrayList(),
-    val poster_path: String?,
-    val adult: Boolean,
-    val overview: String,
-    val release_date: String?,
-    val genre_ids: List<Int>,
-    val original_title: String,
-    val original_language: String,
-    val title: String,
-    val backdrop_path: String?,
-    val popularity: Float,
-    val vote_count: Int,
-    val video: Boolean,
-    val vote_average: Float
-)
+    var id: Int,
+    var page: Int?,
+    var keywords: List<Keyword>?,
+    var videos: List<Video>?,
+    var reviews: List<Review>?,
+    var poster_path: String?,
+    var adult: Boolean,
+    var overview: String,
+    var release_date: String?,
+    var genre_ids: List<Int>,
+    var original_title: String,
+    var original_language: String,
+    var title: String,
+    var backdrop_path: String?,
+    var popularity: Float,
+    var vote_count: Int,
+    var video: Boolean,
+    var vote_average: Float // 评分
+) {
+    // default constructor for fastJson
+    @JSONCreator
+    constructor() : this(
+        0, null, null, null, null,
+        null, false, "", null, emptyList(), "",
+        "en-US", "", null, 0F, 0, false, 0F
+    )
+}

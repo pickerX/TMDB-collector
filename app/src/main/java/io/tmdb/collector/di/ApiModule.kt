@@ -5,6 +5,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
 import io.tmdb.collector.api.MovieApi
+import io.tmdb.collector.api.PersonApi
 import io.tmdb.collector.api.UserApi
 import retrofit2.Retrofit
 import javax.inject.Singleton
@@ -28,6 +29,12 @@ object ApiModule {
     @Provides
     fun movieService(retrofit: Retrofit): MovieApi {
         return retrofit.create(MovieApi::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun personService(retrofit: Retrofit): PersonApi {
+        return retrofit.create(PersonApi::class.java)
     }
 
 }
